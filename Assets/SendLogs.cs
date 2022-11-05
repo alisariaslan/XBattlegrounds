@@ -9,16 +9,16 @@ public class SendLogs : MonoBehaviour
     public Text txt;
     public InputField inputField;
     // Start is called before the first frame update
-    void Start()
-    {
+    //void Start()
+    //{
         
-    }
+    //}
 
-    // Update is called once per frame
-    void Update()
-    {
+    //// Update is called once per frame
+    //void Update()
+    //{
         
-    }
+    //}
 
     public void SendLog(string text,bool send_to_cmd)
     {

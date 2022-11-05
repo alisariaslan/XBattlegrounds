@@ -76,6 +76,7 @@ public class Keys : MonoBehaviour
             movementController.paused = true;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            inputField.ActivateInputField();
         }
         else
         {
