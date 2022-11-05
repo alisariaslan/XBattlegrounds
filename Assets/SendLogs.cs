@@ -20,14 +20,16 @@ public class SendLogs : MonoBehaviour
         
     }
 
-    public void SendLog(string text)
+    public void SendLog(string text,bool send_to_cmd)
     {
         txt.text += "\n"+ DateTime.Now.ToString("HH:mm:ss tt")+" -> "+text;
+        if(send_to_cmd)
+        FindObjectOfType<cmd_switch>().input_module(text);
     }
 
     public void SendFromInputBox()
     {
-        SendLog(inputField.text);
+        SendLog(inputField.text,true);
         inputField.text = "";
     }
 }

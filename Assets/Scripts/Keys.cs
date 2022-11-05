@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Keys : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class Keys : MonoBehaviour
     public PlayerControls player;
     public MovementController movementController;
     public TabletAnim tabletAnim;
-
+    public Button enter;
+    public InputField inputField;
     // Start is called before the first frame update
     //void Start()
     //{
@@ -22,7 +24,6 @@ public class Keys : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            FindObjectOfType<SendLogs>().SendLog("tab tu?una bas?ld?.");
             if (console.activeSelf)
                 Console();
             Tablet();
@@ -32,6 +33,22 @@ public class Keys : MonoBehaviour
             if (tablet.activeSelf)
                 Tablet();
             Console();
+        }
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            if (console.activeSelf)
+            {
+                enter.onClick.Invoke();
+                inputField.ActivateInputField();
+            }
+               
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (tablet.activeSelf)
+                Tablet();
+            if (console.activeSelf)
+                Console();
         }
 
     }
@@ -57,7 +74,6 @@ public class Keys : MonoBehaviour
         {
             player.paused = true;
             movementController.paused = true;
-            Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
@@ -69,6 +85,7 @@ public class Keys : MonoBehaviour
 
     private void WindowsClosed()
     {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
         player.paused = false;
