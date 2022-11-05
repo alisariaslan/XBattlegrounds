@@ -15,6 +15,8 @@ public class MovementController : MonoBehaviour
     public float x, y;
     public float crouch_speed = 2f;
 
+    public bool paused = false;
+
     // Start is called before the first frame update
     //void Start()
     //{
@@ -24,7 +26,10 @@ public class MovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(!paused)
+        {
+            
+      
         groundedPlayer = controller.isGrounded;
 
         if (groundedPlayer && playerVelocity.y < 0)
@@ -83,6 +88,7 @@ public class MovementController : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime ;
         controller.Move(playerVelocity * Time.deltaTime);
 
+        }
     }
-    
+
 }

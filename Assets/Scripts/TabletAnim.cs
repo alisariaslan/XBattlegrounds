@@ -5,9 +5,7 @@ using UnityEngine;
 public class TabletAnim : MonoBehaviour
 {
     public Texture2D cursorTexture;
-    public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotSpot = Vector2.zero;
-
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -26,12 +24,11 @@ public class TabletAnim : MonoBehaviour
         animator.Play("tabletStay");
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
-
     }
 
     public void SetCursor()
     {
-        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.ForceSoftware);
     }
 
     //void OnMouseExit()
