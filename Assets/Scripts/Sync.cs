@@ -6,27 +6,16 @@ using UnityEngine.UI;
 public class Sync : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Toggle toggle;
+    public Toggle t0;
+
     void Start()
     {
-        QualitySettings.vSyncCount = 1;
-        toggle.isOn = true;
+        t0.isOn = PlayerPrefs.GetInt("Sync", 1) == 1 ? true : false;
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-
-    //}
-
-    public void Toggle()
+    public void SetSync()
     {
-        if(toggle.isOn)
-        {
-            QualitySettings.vSyncCount = 1;
-        } else
-        {
-            QualitySettings.vSyncCount = 0;
-        }
+        QualitySettings.vSyncCount = t0.isOn ? 1 : 0;
+        PlayerPrefs.SetInt("Sync", t0.isOn ? 1 : 0);
     }
 }

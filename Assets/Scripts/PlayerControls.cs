@@ -11,8 +11,7 @@ public class PlayerControls : MonoBehaviour
     public GameObject characterBody;
     public GameObject defaultCamera;
     public Vector2 clampInDegrees = new Vector2(360, 180);
-    public float sensitivityf = 2;
-    public float smoothingf = 3;
+   
     public Slider senSlider, smoothSlider;
 
     private Vector2 sensitivity;
@@ -32,15 +31,17 @@ public class PlayerControls : MonoBehaviour
         // Set target direction to the camera's initial orientation.
         targetDirection = transform.localRotation.eulerAngles;
         targetCharacterDirection = characterBody.transform.localRotation.eulerAngles;
-        
+        //LOAD SENS SETTINGS
+        senSlider.value = PlayerPrefs.GetFloat("MouseSensitivity", 2);
+       smoothSlider.value = PlayerPrefs.GetFloat("MouseSmoothing", 3);
     }
 
     void Update()
     {
         if (!paused)
         {
-            sensitivity = new Vector2(sensitivityf, sensitivityf);
-            smoothing = new Vector2(smoothingf, smoothingf);
+            sensitivity = new Vector2(senSlider.value, senSlider.value);
+            smoothing = new Vector2(senSlider.value, senSlider.value);
             
             // Allow the script to clamp based on a desired target value.
             var targetOrientation = Quaternion.Euler(targetDirection);
@@ -78,12 +79,14 @@ public class PlayerControls : MonoBehaviour
 
     }
 
-    public void ApplyChanges()
+    public void SaveSensToDatabase()
     {
-        sensitivityf = senSlider.value;
-        smoothingf = smoothSlider.value;
-        //sensitivity = new Vector2(sensitivityf, sensitivityf);
-        //smoothing = new Vector2(smoothingf, smoothingf);
+        PlayerPrefs.SetFloat("MouseSensitivity", senSlider.value);
+    }
+
+    public void SaveSmoothingToDatabase()
+    {
+        PlayerPrefs.SetFloat("MouseSmoothing", smoothSlider.value);
     }
 
 }
