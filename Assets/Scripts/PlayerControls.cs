@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class PlayerControls : MonoBehaviour
@@ -9,10 +10,9 @@ public class PlayerControls : MonoBehaviour
     public bool paused = false;
     //public MovementController movementController;
     public GameObject characterBody;
-    public GameObject defaultCamera;
     public Vector2 clampInDegrees = new Vector2(360, 180);
-   
-    public Slider senSlider, smoothSlider;
+
+    public float sens, smooth;
 
     private Vector2 sensitivity;
     private Vector2 smoothing;
@@ -23,6 +23,12 @@ public class PlayerControls : MonoBehaviour
 
     void Start()
     {
+        //if (!isLocalPlayer)
+        //{
+        //    defaultCamera.SetActive(false);
+        //    return;
+        //}
+
         if (lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -32,17 +38,20 @@ public class PlayerControls : MonoBehaviour
         targetDirection = transform.localRotation.eulerAngles;
         targetCharacterDirection = characterBody.transform.localRotation.eulerAngles;
         //LOAD SENS SETTINGS
-        senSlider.value = PlayerPrefs.GetFloat("MouseSensitivity", 2);
-       smoothSlider.value = PlayerPrefs.GetFloat("MouseSmoothing", 3);
+        sens = PlayerPrefs.GetFloat("MouseSensitivity", 2);
+        smooth = PlayerPrefs.GetFloat("MouseSmoothing", 3);
     }
 
     void Update()
     {
+        //if (!isLocalPlayer)
+        //    return;
+
         if (!paused)
         {
-            sensitivity = new Vector2(senSlider.value, senSlider.value);
-            smoothing = new Vector2(senSlider.value, senSlider.value);
-            
+            sensitivity = new Vector2(sens, sens);
+            smoothing = new Vector2(smooth, smooth);
+
             // Allow the script to clamp based on a desired target value.
             var targetOrientation = Quaternion.Euler(targetDirection);
             var targetCharacterOrientation = Quaternion.Euler(targetCharacterDirection);
@@ -79,14 +88,8 @@ public class PlayerControls : MonoBehaviour
 
     }
 
-    public void SaveSensToDatabase()
-    {
-        PlayerPrefs.SetFloat("MouseSensitivity", senSlider.value);
-    }
 
-    public void SaveSmoothingToDatabase()
-    {
-        PlayerPrefs.SetFloat("MouseSmoothing", smoothSlider.value);
-    }
+
+
 
 }

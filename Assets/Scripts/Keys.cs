@@ -8,21 +8,24 @@ public class Keys : MonoBehaviour
 {
     public GameObject tablet;
     public GameObject console;
-    public PlayerControls player;
-    public MovementController movementController;
+
     public TabletAnim tabletAnim;
     public Button enter;
     public InputField inputField;
-    // Start is called before the first frame update
-    //void Start()
-    //{
 
-    //}
+    public PlayerControls player;
+    public MovementController movementController;
+    // Start is called before the first frame update
+    void Start()
+    {
+      
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape))
         {
             if (console.activeSelf)
                 Console();
@@ -34,14 +37,14 @@ public class Keys : MonoBehaviour
                 Tablet();
             Console();
         }
-        if(Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             if (console.activeSelf)
             {
                 enter.onClick.Invoke();
                 inputField.ActivateInputField();
             }
-               
+
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -72,7 +75,9 @@ public class Keys : MonoBehaviour
         console.SetActive(!console.activeSelf);
         if (console.activeSelf)
         {
+          
             player.paused = true;
+          
             movementController.paused = true;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -89,7 +94,10 @@ public class Keys : MonoBehaviour
         Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
-        player.paused = false;
-        movementController.paused = false;
+
+      
+            player.paused = false;
+     
+            movementController.paused = false;
     }
 }
