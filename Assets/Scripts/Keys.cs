@@ -12,8 +12,9 @@ public class Keys : MonoBehaviour
     public TabletAnim tabletAnim;
     public Button enter;
     public InputField inputField;
-
+    [HideInInspector()]
     public PlayerControls player;
+    [HideInInspector()]
     public MovementController movementController;
     public bool ingame;
 
@@ -55,7 +56,7 @@ public class Keys : MonoBehaviour
 
     }
 
-    private void Tablet()
+    public void Tablet()
     {
         tablet.SetActive(!tablet.activeSelf);
         if (tablet.activeSelf)
@@ -73,7 +74,7 @@ public class Keys : MonoBehaviour
             player.paused = false;
         }
     }
-
+    public Text console_txt;
     private void Console()
     {
         console.SetActive(!console.activeSelf);
@@ -100,6 +101,7 @@ public class Keys : MonoBehaviour
                 if (movementController != null)
                     movementController.paused = false;
             }
+            console_txt.text = "-> CONSOLE ACTIVATED <-";
         }
     }
 

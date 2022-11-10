@@ -10,15 +10,15 @@ public class helper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(spawnAtEditorCamLocation)
-        {
-            Camera editor_cam = SceneView.currentDrawingSceneView.camera;
-            GameObject start_loc = GameObject.Find("NetworkStartPos");
-            start_loc.transform.position = editor_cam.transform.position;
-        }
+        //if(spawnAtEditorCamLocation)
+        //{
+        //    GameObject editor_cam = SceneView.lastActiveSceneView.camera.gameObject;
+        //    GameObject start_loc = GameObject.Find("NetworkStartPos");
+        //    start_loc.transform.position = editor_cam.transform.position;
+        //}
         if(startHostNow)
         {
-            FindObjectOfType<def_network>().hostStart();
+            FindObjectOfType<def_network>().start_host();
         }
     }
         

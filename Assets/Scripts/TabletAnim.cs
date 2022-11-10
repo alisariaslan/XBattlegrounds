@@ -22,13 +22,20 @@ public class TabletAnim : MonoBehaviour
     {
         Animator animator = GetComponent<Animator>();
         animator.Play("tabletStay");
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
+       
     }
 
     public void SetCursor()
     {
         Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.ForceSoftware);
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
+
+    public void Leave()
+    {
+        FindObjectOfType<Keys>().Tablet();
+        FindObjectOfType<SendLogs>().SendLog("leave", true);
     }
 
     //void OnMouseExit()
