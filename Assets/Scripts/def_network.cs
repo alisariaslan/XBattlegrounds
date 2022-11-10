@@ -34,7 +34,7 @@ public class def_network : NetworkManager
     //}
 
 
-    public void startHost()
+    public void hostStart()
     {
         manager.StartHost();
         Debug.Log("StartHost");

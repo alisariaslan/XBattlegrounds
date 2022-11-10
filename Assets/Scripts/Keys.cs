@@ -15,17 +15,22 @@ public class Keys : MonoBehaviour
 
     public PlayerControls player;
     public MovementController movementController;
+    public bool ingame;
+
     // Start is called before the first frame update
     void Start()
     {
-      
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape))
+        ingame = FindObjectOfType<keep_alive>().ingame;
+
+
+        if (Input.GetKeyDown(KeyCode.Tab) && ingame)
         {
             if (console.activeSelf)
                 Console();
@@ -46,13 +51,7 @@ public class Keys : MonoBehaviour
             }
 
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (tablet.activeSelf)
-                Tablet();
-            if (console.activeSelf)
-                Console();
-        }
+
 
     }
 
@@ -62,11 +61,16 @@ public class Keys : MonoBehaviour
         if (tablet.activeSelf)
         {
             player.paused = true;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
             tabletAnim.SetCursor();
         }
         else
         {
-            WindowsClosed();
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
+            player.paused = false;
         }
     }
 
@@ -75,29 +79,29 @@ public class Keys : MonoBehaviour
         console.SetActive(!console.activeSelf);
         if (console.activeSelf)
         {
-          
-            player.paused = true;
-          
-            movementController.paused = true;
+            if (player != null)
+                player.paused = true;
+            if (movementController != null)
+                movementController.paused = true;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
             inputField.ActivateInputField();
         }
         else
         {
-            WindowsClosed();
+            if (ingame)
+            {
+                Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = false;
+                if (player != null)
+                    player.paused = false;
+                if (movementController != null)
+                    movementController.paused = false;
+            }
         }
     }
 
-    private void WindowsClosed()
-    {
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
 
-      
-            player.paused = false;
-     
-            movementController.paused = false;
-    }
 }

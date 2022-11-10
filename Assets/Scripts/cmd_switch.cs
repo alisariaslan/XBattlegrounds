@@ -5,25 +5,25 @@ using UnityEngine.Networking;
 
 public class cmd_switch : MonoBehaviour
 {
- 
-    
+
+
     public SendLogs sendLogs;
 
 #pragma warning disable CS0618 // Type or member is obsolete
     public NetworkManager networkManager;
 #pragma warning restore CS0618 // Type or member is obsolete
-                              //public Camera camera;
-    public GameObject destoryThis;
+    //public Camera camera;
+    public GameObject ui_cam;
     // Start is called before the first frame update
     //void Start()
     //{
-        
+
     //}
 
     //// Update is called once per frame
     //void Update()
     //{
-        
+
     //}
 
     public void input_module(string input)
@@ -31,26 +31,31 @@ public class cmd_switch : MonoBehaviour
         switch (input)
         {
             case "help":
-                sendLogs.SendLog("Sadece help komutu mevcut",false);
+                sendLogs.SendLog("help -> Shows you list of commands.", false);
+                sendLogs.SendLog("kill -> Kills the first player founded.", false);
                 break;
-            case "sclient":
-                destoryThis.SetActive(false);
-                networkManager.StartClient();
+            case "kill":
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null)
+                {
+                    ui_cam.SetActive(true);
+                    GameObject.Destroy(player);
+                    sendLogs.SendLog(player.name + " has been killed.", false);
+                }
+                else
+                {
+                    sendLogs.SendLog("No player found.", false);
+                    return;
+                }
+
                 break;
             case "sserver":
                 networkManager.StartServer();
                 break;
-            case "shost":
-                if(destoryThis!=null)
-                destoryThis.SetActive(false);
-                if(!networkManager.IsClientConnected())
-                    networkManager.StartHost();
-                else
-                    sendLogs.SendLog("Zaten bir sunucu var", false);
-                break;
+          
 
             default:
-                sendLogs.SendLog("Gecersiz komut!!",false);
+                sendLogs.SendLog("Invalid command! Write \"help\" for another commands.", false);
                 break;
         }
     }
