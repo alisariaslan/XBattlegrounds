@@ -34,6 +34,7 @@ public class def_network : NetworkManager
             amIhost = true;
             Debug.Log("Host started. -> " + host);
             sender.SendLog("Host started. -> " + host, false);
+            status_txt.text = "YOU ARE THE HOST";
         }
         else
         {
@@ -45,34 +46,40 @@ public class def_network : NetworkManager
 
     public void stop_host()
     {
+        amIclient = false;
+        amIhost = false;
+        
         manager.StopHost();
         Debug.Log("Host stopped.");
         sender.SendLog("Host stopped.", false);
+        status_txt.text = "";
     }
 
 
     public void start_client()
     {
-       
         conn_btn.interactable = false;
         manager = this;
         manager.networkAddress = input.text;
-        NetworkClient client  = manager.StartClient();
-        if(client == null)
+        //manager.StartClient();
+        NetworkClient client = manager.StartClient();
+        if (client == null)
         {
             conn_btn.interactable = true;
             Debug.Log("Something wrong with ip adress! -> input: " + input.text);
             sender.SendLog("Something wrong with ip adress! -> input: " + input.text, false);
-        } else
+        }
+        else
         {
             client.RegisterHandler(MsgType.Disconnect, OnClientError); //OnError is registered here
-            client.RegisterHandler(MsgType.Connect, OnClientConnect); //Connect is registered here
+            //NetworkServer.Listen(7777);
+            //client.RegisterHandler(MsgType.Connect, OnClientConnect); //Connect is registered here
             Debug.Log("Attemp to connect -> " + manager.networkAddress);
             sender.SendLog("Attemp to connect -> " + manager.networkAddress, false);
             connect_attempting = true;
             StartCoroutine(Connecting());
         }
-       
+
     }
     public Button conn_btn;
     public Text conn_btn_txt;
@@ -85,22 +92,30 @@ public class def_network : NetworkManager
         yield return new WaitForSeconds(1.0f);
         conn_btn_txt.text = "Connecting...";
         yield return new WaitForSeconds(1.0f);
-        if (connect_attempting)
-        StartCoroutine(Connecting());
-    }
-    
-    void OnClientError(NetworkMessage netMsg)
-    {
-        StopCoroutine(Connecting());
-        amIclient = false;
-        Debug.Log("Client failed!");
-        sender.SendLog("Client failed!", false);
-        connect_attempting = false;
-        conn_btn_txt.text = "Connect";
-        conn_btn.interactable = true;
+        if (GameObject.FindGameObjectsWithTag("Player").Length > 1)
+            OnClientConnect();
+        else if (connect_attempting)
+            StartCoroutine(Connecting());
     }
 
-    void OnClientConnect(NetworkMessage netMsg)
+    public Text status_txt;
+    void OnClientError(NetworkMessage netMsg)
+    {
+        if (FindObjectOfType<keep_alive>().ingame)
+            status_txt.text = "YOU HAVE LOST THE CONNECTION!";
+        else
+        {
+            StopCoroutine(Connecting());
+            amIclient = false;
+            Debug.Log("Client failed!");
+            sender.SendLog("Client failed!", false);
+            connect_attempting = false;
+            conn_btn_txt.text = "Connect";
+            conn_btn.interactable = true;
+        }
+    }
+
+    void OnClientConnect()
     {
         StopCoroutine(Connecting());
         amIclient = true;
@@ -109,6 +124,7 @@ public class def_network : NetworkManager
         connect_attempting = false;
         conn_btn_txt.text = "Connect";
         conn_btn.interactable = true;
+        status_txt.text = "";
     }
 
     public void stop_client()
@@ -116,6 +132,7 @@ public class def_network : NetworkManager
         manager.StopClient();
         Debug.Log("Client stopped.");
         sender.SendLog("Client stopped.", false);
+        status_txt.text = "";
     }
 
 
