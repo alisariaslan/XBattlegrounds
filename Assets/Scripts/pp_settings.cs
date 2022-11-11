@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class pp_settings : MonoBehaviour
 {
     public PostProcessVolume postProcessVolume;
-    public Toggle t1, t2, t3, t4, t5;
+    public Toggle tg_blom, tg_ambocc, tg_doff, tg_mtb, tg_lnsd;
 
     private AmbientOcclusion ambientOcclusion;
     private Bloom bloom;
@@ -23,42 +23,42 @@ public class pp_settings : MonoBehaviour
         postProcessVolume.profile.TryGetSettings<MotionBlur>(out motionBlur);
         postProcessVolume.profile.TryGetSettings<LensDistortion>(out lensDistortion);
 
-        t1.isOn = PlayerPrefs.GetInt("Bloom", 1) == 1 ? true : false;
-        t2.isOn = PlayerPrefs.GetInt("AmbientOcclusion", 1) == 1 ? true : false;
-        t3.isOn = PlayerPrefs.GetInt("DepthOfField", 1) == 1 ? true : false;
-        t4.isOn = PlayerPrefs.GetInt("MotionBlur", 1) == 1 ? true : false;
-        t5.isOn = PlayerPrefs.GetInt("LensDistortion", 1) == 1 ? true : false;
+        tg_blom.isOn = PlayerPrefs.GetInt("Bloom", 1) == 1 ? true : false;
+        tg_ambocc.isOn = PlayerPrefs.GetInt("AmbientOcclusion", 1) == 1 ? true : false;
+        tg_doff.isOn = PlayerPrefs.GetInt("DepthOfField", 1) == 1 ? true : false;
+        tg_mtb.isOn = PlayerPrefs.GetInt("MotionBlur", 1) == 1 ? true : false;
+        tg_lnsd.isOn = PlayerPrefs.GetInt("LensDistortion", 1) == 1 ? true : false;
 
     }
 
     public void Bloom()
     {
-        bloom.active = t1.isOn;
-        PlayerPrefs.SetInt("Bloom", t1.isOn ? 1 : 0);
+        bloom.active = tg_blom.isOn;
+        PlayerPrefs.SetInt("Bloom", tg_blom.isOn ? 1 : 0);
     }
 
     public void SetAmbientOcclusion()
     {
-        ambientOcclusion.active = t2.isOn;
-        PlayerPrefs.SetInt("AmbientOcclusion", t2.isOn ? 1 : 0);
+        ambientOcclusion.active = tg_ambocc.isOn;
+        PlayerPrefs.SetInt("AmbientOcclusion", tg_ambocc.isOn ? 1 : 0);
     }
 
     public void SetDepthOfField()
     {
-        depthOfField.active = t3.isOn;
-        PlayerPrefs.SetInt("DepthOfField", t3.isOn ? 1 : 0);
+        depthOfField.active = tg_doff.isOn;
+        PlayerPrefs.SetInt("DepthOfField", tg_doff.isOn ? 1 : 0);
     }
 
     public void SetMotionBlur()
     {
-        motionBlur.active = t4.isOn;
-        PlayerPrefs.SetInt("MotionBlur", t4.isOn ? 1 : 0);
+        motionBlur.active = tg_mtb.isOn;
+        PlayerPrefs.SetInt("MotionBlur", tg_mtb.isOn ? 1 : 0);
     }
 
     public void SetLensDistortion()
     {
-        lensDistortion.active = t5.isOn;
-        PlayerPrefs.SetInt("LensDistortion", t5.isOn ? 1 : 0);
+        lensDistortion.active = tg_lnsd.isOn;
+        PlayerPrefs.SetInt("LensDistortion", tg_lnsd.isOn ? 1 : 0);
     }
 
 }
