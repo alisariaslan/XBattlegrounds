@@ -10,7 +10,9 @@ public class def_network : NetworkManager
     public SendLogs sender;
     public GameObject ui;
     public GameObject ui_cam;
-    public InputField input;
+    public InputField inputIP, inputPort;
+    public InputField inputSetPort;
+
 
     [Header("Launch Settings")]
     public bool startAsClient = false;
@@ -28,6 +30,12 @@ public class def_network : NetworkManager
     public void start_host()
     {
         manager = this;
+        if (!inputSetPort.text.Equals(""))
+            manager.networkPort = int.Parse(inputSetPort.text);
+        else
+            manager.networkPort = 7777;
+        manager.networkAddress = "localhost";
+
         var host = manager.StartHost();
         if (host != null)
         {
@@ -39,8 +47,8 @@ public class def_network : NetworkManager
         else
         {
             amIhost = false;
-            Debug.Log("Host failed!");
-            sender.SendLog("Host failed!", false);
+            Debug.Log("Host failed! -> " + host.ToString());
+            sender.SendLog("Host failed! -> " + host.ToString(), false);
         }
     }
 
@@ -48,11 +56,11 @@ public class def_network : NetworkManager
     {
         amIclient = false;
         amIhost = false;
+        FindObjectOfType<keep_alive>().enable_ui();
         manager.StopHost();
         Debug.Log("Host stopped.");
         sender.SendLog("Host stopped.", false);
         status_txt.text = "";
-        FindObjectOfType<keep_alive>().enable_ui();
     }
 
 
@@ -60,22 +68,31 @@ public class def_network : NetworkManager
     {
         conn_btn.interactable = false;
         manager = this;
-        manager.networkAddress = input.text;
-        //manager.StartClient();
+
+        if (!inputIP.text.Equals(""))
+            manager.networkAddress = inputIP.text;
+        else
+            manager.networkAddress = "localhost";
+
+        if (!inputPort.text.Equals(""))
+            manager.networkPort = int.Parse(inputPort.text);
+        else
+            manager.networkPort = 7777;
+
         NetworkClient client = manager.StartClient();
         if (client == null)
         {
             conn_btn.interactable = true;
-            Debug.Log("Something wrong with ip adress! -> input: " + input.text);
-            sender.SendLog("Something wrong with ip adress! -> input: " + input.text, false);
+            Debug.Log("Something wrong with client! -> "+ client.ToString());
+            sender.SendLog("Something wrong with client! -> " + client.ToString(), false);
         }
         else
         {
             client.RegisterHandler(MsgType.Disconnect, OnClientError); //OnError is registered here
             //NetworkServer.Listen(7777);
             //client.RegisterHandler(MsgType.Connect, OnClientConnect); //Connect is registered here
-            Debug.Log("Attemp to connect -> " + manager.networkAddress);
-            sender.SendLog("Attemp to connect -> " + manager.networkAddress, false);
+            Debug.Log("Attemp to connect -> " + manager.networkAddress+":"+manager.networkPort);
+            sender.SendLog("Attemp to connect -> " + manager.networkAddress + ":" + manager.networkPort, false);
             connect_attempting = true;
             StartCoroutine(Connecting());
         }

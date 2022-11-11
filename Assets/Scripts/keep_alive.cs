@@ -52,4 +52,9 @@ public class keep_alive : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
     }
+    
+    public void force_leave()
+    {
+        
+    }
 }
