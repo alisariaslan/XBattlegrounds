@@ -35,30 +35,28 @@ public class cmd_switch : MonoBehaviour
                 sendLogs.SendLog("kill -> Kills the player.", false);
                 sendLogs.SendLog("leave -> Stops host OR stops Client.", false);
                 break;
-            case "kill":
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
-                if (player != null)
-                {
-                    ui_cam.SetActive(true);
-                    GameObject.Destroy(player);
-                    sendLogs.SendLog(player.name + " has been killed.", false);
-                }
-                else
-                {
-                    sendLogs.SendLog("No player found.", false);
-                    return;
-                }
-                break;
+            //case "kill":
+            //    GameObject player = GameObject.FindGameObjectWithTag("Player");
+            //    if (player != null)
+            //    {
+            //        ui_cam.SetActive(true);
+            //        GameObject.Destroy(player);
+            //        sendLogs.SendLog(player.name + " has been killed.", false);
+            //    }
+            //    else
+            //    {
+            //        sendLogs.SendLog("No player found.", false);
+            //        return;
+            //    }
+            //    break;
             case "leave":
                 if(def_Network.amIhost)
                 {
-                    ui_cam.SetActive(true);
                     def_Network.stop_host();
                     sendLogs.SendLog("Manual host stop requested...", false);
                 }
                 else
                 {
-                    ui_cam.SetActive(true);
                     def_Network.stop_client();
                     sendLogs.SendLog("Manual client stop requested...", false);
                 }

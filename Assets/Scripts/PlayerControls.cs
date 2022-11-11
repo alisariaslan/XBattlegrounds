@@ -6,20 +6,21 @@ using UnityEngine.UI;
 
 public class PlayerControls : MonoBehaviour
 {
-    public bool lockCursor;
-    public bool paused = false;
-    //public MovementController movementController;
-    public GameObject characterBody;
-    public Vector2 clampInDegrees = new Vector2(360, 180);
-
-    public float sens, smooth;
-
     private Vector2 sensitivity;
     private Vector2 smoothing;
     private Vector2 _mouseAbsolute;
     private Vector2 _smoothMouse;
     private Vector2 targetDirection;
     private Vector2 targetCharacterDirection;
+
+    public bool lockCursor;
+    public bool paused = false;
+    public GameObject characterBody;
+    public Vector2 clampInDegrees = new Vector2(360, 180);
+
+    public float sens, smooth;
+    private Slider sensS, smoothS;
+
 
     void Start()
     {
@@ -37,15 +38,14 @@ public class PlayerControls : MonoBehaviour
         // Set target direction to the camera's initial orientation.
         targetDirection = transform.localRotation.eulerAngles;
         targetCharacterDirection = characterBody.transform.localRotation.eulerAngles;
-        //LOAD SENS SETTINGS
-        sens = PlayerPrefs.GetFloat("MouseSensitivity", 2);
-        smooth = PlayerPrefs.GetFloat("MouseSmoothing", 3);
     }
 
     void Update()
     {
         //if (!isLocalPlayer)
         //    return;
+        sens = PlayerPrefs.GetFloat("MouseSensitivity", 2);
+        smooth = PlayerPrefs.GetFloat("MouseSmoothing", 3);
 
         if (!paused)
         {

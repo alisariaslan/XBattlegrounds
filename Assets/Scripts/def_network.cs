@@ -48,11 +48,11 @@ public class def_network : NetworkManager
     {
         amIclient = false;
         amIhost = false;
-        
         manager.StopHost();
         Debug.Log("Host stopped.");
         sender.SendLog("Host stopped.", false);
         status_txt.text = "";
+        FindObjectOfType<keep_alive>().enable_ui();
     }
 
 

@@ -36,15 +36,20 @@ public class keep_alive : MonoBehaviour
             }
             else
             {
-                ingame = false;
-                ingame_panel.SetActive(false);
-                ui_panel.SetActive(true);
-                ui_cam.SetActive(true);
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+                enable_ui();
             }
         }
 
+    }
+
+    public void enable_ui()
+    {
+        ui_cam.SetActive(true);
+        ingame = false;
+        ingame_panel.SetActive(false);
+        ui_panel.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
     }
 }
