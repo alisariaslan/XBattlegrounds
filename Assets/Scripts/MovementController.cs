@@ -34,6 +34,11 @@ public class MovementController : NetworkBehaviour
         Keys keys = FindObjectOfType<Keys>();
         keys.movementController = this;
         keys.player = GetComponentInChildren<PlayerControls>();
+
+        //touch_movement touch = FindObjectOfType<touch_movement>();
+        //touch.movementController = this;
+        //touch.ch_controller = controller;
+        //touch.fps_cam = camera;
     }
 
     // Update is called once per frame
@@ -67,8 +72,6 @@ public class MovementController : NetworkBehaviour
 
             x = Input.GetAxis("Horizontal");
             y = Input.GetAxis("Vertical");
-
-
 
             //camera forward and right vectors:
             Vector3 forward = camera.transform.forward;
