@@ -25,22 +25,12 @@ public class keep_alive : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (def_Network.amIclient || def_Network.amIhost)
-        //{
-        //    players = GameObject.FindGameObjectsWithTag("Player");
-        //    if (players.Length > 0)
-        //    {
-        //        ingame = true;
-        //        player_counter_text.text = players.Length.ToString();
-        //        ingame_panel.SetActive(true);
-        //        ui_panel.SetActive(false);
-        //        ui_cam.SetActive(false);
-        //    }
-        //    else
-        //    {
-        //        enable_ui();
-        //    }
-        //}
+        if(ingame)
+        {
+
+            players = GameObject.FindGameObjectsWithTag("Player");
+            player_counter_text.text = players.Length.ToString();
+        }
 
     }
 
@@ -58,19 +48,10 @@ public class keep_alive : MonoBehaviour
             joysticks.SetActive(false);
         }
     }
-    
-    public void force_leave()
-    {
-        
-    }
-
-    public void gameEntered()
-    {
-        
-    } 
 
     public void gameHosted()
     {
+
         players = GameObject.FindGameObjectsWithTag("Player");
         ingame = true;
         player_counter_text.text = players.Length.ToString();
