@@ -21,6 +21,9 @@ public class MovementController : NetworkBehaviour
 
     public bool paused = false;
 
+    private SimpleTouchController leftController;
+
+    private string device_type;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,15 +33,18 @@ public class MovementController : NetworkBehaviour
             return;
         }
 
+        device_type = FindObjectOfType<SelectedPlatform>().device_type;
 
-        Keys keys = FindObjectOfType<Keys>();
-        keys.movementController = this;
-        keys.player = GetComponentInChildren<PlayerControls>();
-
-        //touch_movement touch = FindObjectOfType<touch_movement>();
-        //touch.movementController = this;
-        //touch.ch_controller = controller;
-        //touch.fps_cam = camera;
+        if (device_type.Equals("Desktop"))
+        {
+            Keys keys = FindObjectOfType<Keys>();
+            keys.movementController = this;
+            keys.player = GetComponentInChildren<PlayerControls>();
+        }
+        else if (device_type.Equals("Handheld"))
+        {
+            leftController = GameObject.Find("jStick_left").GetComponent<SimpleTouchController>();
+        }
     }
 
     // Update is called once per frame
@@ -70,8 +76,16 @@ public class MovementController : NetworkBehaviour
                 headBobbing.walkingBobbingSpeed = 10f;
             }
 
-            x = Input.GetAxis("Horizontal");
-            y = Input.GetAxis("Vertical");
+            if (device_type.Equals("Desktop"))
+            {
+                x = Input.GetAxis("Horizontal");
+                y = Input.GetAxis("Vertical");
+            }
+            else if (device_type.Equals("Handheld"))
+            {
+                x = leftController.GetTouchPosition.x;
+                y = leftController.GetTouchPosition.y;
+            }
 
             //camera forward and right vectors:
             Vector3 forward = camera.transform.forward;
@@ -107,6 +121,28 @@ public class MovementController : NetworkBehaviour
             controller.Move(playerVelocity * Time.deltaTime);
 
         }
+
+        //void UpdateAim(Vector2 value)
+        //{
+
+        //        Quaternion rot = Quaternion.Euler(0f,
+        //            transform.localEulerAngles.y - value.x * Time.deltaTime * -speedProgressiveLook,
+        //            0f);
+
+        //        _rigidbody.MoveRotation(rot);
+
+        //        rot = Quaternion.Euler(headTrans.localEulerAngles.x - value.y * Time.deltaTime * speedProgressiveLook,
+        //            0f,
+        //            0f);
+        //        headTrans.localRotation = rot;
+
+
+        //}
+
+        //void OnDestroy()
+        //{
+        //    rightController.TouchEvent -= RightController_TouchEvent;
+        //}
     }
 
 }

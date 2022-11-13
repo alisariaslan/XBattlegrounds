@@ -8,7 +8,8 @@ public class Keys : MonoBehaviour
 {
     public GameObject tablet;
     public GameObject console;
-
+    public keep_alive keepAlive;
+    
     public TabletAnim tabletAnim;
     public Button enter;
     public InputField inputField;
@@ -28,7 +29,7 @@ public class Keys : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ingame = FindObjectOfType<keep_alive>().ingame;
+        ingame = keepAlive.ingame;
 
 
         if (Input.GetKeyDown(KeyCode.Tab) && ingame)

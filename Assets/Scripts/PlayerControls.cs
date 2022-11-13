@@ -21,6 +21,9 @@ public class PlayerControls : MonoBehaviour
     public float sens, smooth;
     private Slider sensS, smoothS;
 
+    private string device_type;
+
+    private SimpleTouchController rightController;
 
     void Start()
     {
@@ -29,15 +32,20 @@ public class PlayerControls : MonoBehaviour
         //    defaultCamera.SetActive(false);
         //    return;
         //}
-
+        device_type = FindObjectOfType<SelectedPlatform>().device_type;
+        
         if (lockCursor)
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
         }
         // Set target direction to the camera's initial orientation.
         targetDirection = transform.localRotation.eulerAngles;
         targetCharacterDirection = characterBody.transform.localRotation.eulerAngles;
+        if (device_type.Equals("Handheld"))
+        {
+            rightController = GameObject.Find("jStick_right").GetComponent<SimpleTouchController>();
+        }
     }
 
     void Update()
@@ -57,7 +65,18 @@ public class PlayerControls : MonoBehaviour
             var targetCharacterOrientation = Quaternion.Euler(targetCharacterDirection);
 
             // Get raw mouse input for a cleaner reading on more sensitive mice.
-            var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+            float x = 0, y = 0;
+            if (device_type.Equals("Desktop"))
+            {
+                x = Input.GetAxisRaw("Mouse X");
+                y = Input.GetAxisRaw("Mouse Y");
+            }
+            else if (device_type.Equals("Handheld"))
+            {
+                x = rightController.GetTouchPosition.x;
+                y = rightController.GetTouchPosition.y;
+            }
+            var mouseDelta = new Vector2(x, y);
 
             // Scale input against the sensitivity setting and multiply that against the smoothing value.
             mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity.x * smoothing.x, sensitivity.y * smoothing.y));

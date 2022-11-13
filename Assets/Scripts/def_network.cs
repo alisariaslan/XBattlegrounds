@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class def_network : NetworkManager
 {
-    private NetworkManager manager;
+    public keep_alive keepAlive;
     public SendLogs sender;
     public GameObject ui;
     public GameObject ui_cam;
@@ -21,6 +21,8 @@ public class def_network : NetworkManager
     public bool amIhost = false;
     [HideInInspector()]
     public bool amIclient = false;
+
+    private NetworkManager manager;
 
     void Start()
     {
@@ -43,6 +45,7 @@ public class def_network : NetworkManager
             Debug.Log("Host started. -> " + host);
             sender.SendLog("Host started. -> " + host, false);
             status_txt.text = "YOU ARE THE HOST";
+            keepAlive.gameHosted();
         }
         else
         {

@@ -4,36 +4,45 @@ using UnityEngine;
 
 public class SelectedPlatform : MonoBehaviour
 {
-    public string m_DeviceType;
+    public string device_type;
     public SendLogs sendlog;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-      
-        if (SystemInfo.deviceType == DeviceType.Desktop)
+
+        //Check if the device running this is a console
+        if (SystemInfo.deviceType == DeviceType.Console)
         {
             //Change the text of the label
-            m_DeviceType = "Desktop";
-
-
-
-         
+            device_type = "Console";
         }
+
+        //Check if the device running this is a desktop
+        else if (SystemInfo.deviceType == DeviceType.Desktop)
+        {
+            device_type = "Desktop";
+        }
+
+        //Check if the device running this is a handheld
         else if (SystemInfo.deviceType == DeviceType.Handheld)
         {
-            m_DeviceType = "Mobile";
-
-
+            device_type = "Handheld";
         }
 
-        Debug.Log("Device Type: " + m_DeviceType);
-        sendlog.SendLog("Device Type: " + m_DeviceType,false);
+        //Check if the device running this is unknown
+        else if (SystemInfo.deviceType == DeviceType.Unknown)
+        {
+            device_type = "Unknown";
+        }
+
+        Debug.Log("Device Type: " + device_type);
+        sendlog.SendLog("Device Type: " + device_type, false);
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    //void Update()
+    //{
         
-    }
+    //}
 }
