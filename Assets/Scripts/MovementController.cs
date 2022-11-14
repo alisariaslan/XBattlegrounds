@@ -122,27 +122,6 @@ public class MovementController : NetworkBehaviour
 
         }
 
-        //void UpdateAim(Vector2 value)
-        //{
-
-        //        Quaternion rot = Quaternion.Euler(0f,
-        //            transform.localEulerAngles.y - value.x * Time.deltaTime * -speedProgressiveLook,
-        //            0f);
-
-        //        _rigidbody.MoveRotation(rot);
-
-        //        rot = Quaternion.Euler(headTrans.localEulerAngles.x - value.y * Time.deltaTime * speedProgressiveLook,
-        //            0f,
-        //            0f);
-        //        headTrans.localRotation = rot;
-
-
-        //}
-
-        //void OnDestroy()
-        //{
-        //    rightController.TouchEvent -= RightController_TouchEvent;
-        //}
     }
 
 }
