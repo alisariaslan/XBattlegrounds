@@ -18,15 +18,10 @@ public class Keys : MonoBehaviour
     [HideInInspector()]
     public MovementController movementController;
     public bool ingame;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    
+    public GameObject triggerTablet;
 
 
-    // Update is called once per frame
     void Update()
     {
         ingame = keepAlive.ingame;
@@ -66,6 +61,7 @@ public class Keys : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
             tabletAnim.SetCursor();
+            triggerTablet.SetActive(false);
         }
         else
         {
@@ -73,6 +69,7 @@ public class Keys : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
             player.paused = false;
+            triggerTablet.SetActive(true);
         }
     }
     public Text console_txt;
