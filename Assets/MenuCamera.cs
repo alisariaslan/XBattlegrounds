@@ -8,10 +8,10 @@ public class MenuCamera : MonoBehaviour
   
  
     // Start is called before the first frame update
-    void Start()
-    {
-        ReSOUND();
-    }
+    //void Start()
+    //{
+    //    ReSOUND();
+    //}
 
     public void ReSOUND()
     {
@@ -21,6 +21,12 @@ public class MenuCamera : MonoBehaviour
         effectValue = PlayerPrefs.GetFloat("EffectVolume", 1);
         this.GetComponent<AudioSource>().volume = mainValue * musicValue;
     }
+	
+	public void OnEnable()
+	{
+		ReSOUND();
+		Debug.Log("test");
+	}
 
-   
+
 }

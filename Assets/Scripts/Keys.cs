@@ -20,7 +20,7 @@ public class Keys : MonoBehaviour
     public bool ingame;
     
     public GameObject triggerTablet;
-
+    public GameObject joyStickL, joyStickR;
 
     void Update()
     {
@@ -52,6 +52,14 @@ public class Keys : MonoBehaviour
 
     }
 
+    public void SwitchHands(bool isLeft)
+    {
+        if(isLeft)
+            movementController.SwitchMovemementToLeftHand();
+        else
+            movementController.SwitchMovemementToRightHand();
+    }
+
     public void Tablet()
     {
         tablet.SetActive(!tablet.activeSelf);
@@ -62,6 +70,8 @@ public class Keys : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             tabletAnim.SetCursor();
             triggerTablet.SetActive(false);
+			joyStickL.SetActive(false);
+			SwitchHands(false);
         }
         else
         {
@@ -70,6 +80,8 @@ public class Keys : MonoBehaviour
             Cursor.visible = false;
             player.paused = false;
             triggerTablet.SetActive(true);
+			joyStickL.SetActive(true);
+			SwitchHands(true);
         }
     }
     public Text console_txt;

@@ -21,7 +21,8 @@ public class MovementController : NetworkBehaviour
 
     public bool paused = false;
 
-    private SimpleTouchController leftController;
+	private GameObject leftJoystick;
+	private SimpleTouchController leftController;
 
     private string device_type;
     // Start is called before the first frame update
@@ -32,20 +33,30 @@ public class MovementController : NetworkBehaviour
             camera.SetActive(false);
             return;
         }
+		
+        Keys keys = FindObjectOfType<Keys>();
+        keys.movementController = this;
+        keys.player = GetComponentInChildren<PlayerControls>();
 
         device_type = FindObjectOfType<SelectedPlatform>().device_type;
-
-        //if (device_type.Equals("Desktop"))
-        //{
-            Keys keys = FindObjectOfType<Keys>();
-            keys.movementController = this;
-            keys.player = GetComponentInChildren<PlayerControls>();
-        //}
-         if (device_type.Equals("Handheld"))
+        if (device_type.Equals("Handheld"))
         {
-            leftController = GameObject.Find("jStick_left").GetComponent<SimpleTouchController>();
-        }
+			SwitchMovemementToLeftHand();
+		}
     }
+
+    public void SwitchMovemementToRightHand()
+    {
+		leftJoystick = GameObject.Find("jStick_right");
+		leftController = leftJoystick.GetComponent<SimpleTouchController>();
+	} 
+
+
+    public void SwitchMovemementToLeftHand()
+    {
+		leftJoystick = GameObject.Find("jStick_left");
+		leftController = leftJoystick.GetComponent<SimpleTouchController>();
+	}
 
     // Update is called once per frame
     void Update()

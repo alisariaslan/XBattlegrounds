@@ -22,6 +22,7 @@ public class MainVolumeSlider : MonoBehaviour
 
     public void UpdateAllObjects()
     {
-        FindObjectOfType<MenuCamera>().ReSOUND();
-    }
+		if (FindObjectOfType<MenuCamera>())
+			FindObjectOfType<MenuCamera>().ReSOUND();
+	}
 }

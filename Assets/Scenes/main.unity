@@ -305,11 +305,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224000011143561908, guid: c3f341c6e5b047e4e8e77a7f098cbbcf, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 224000011143561908, guid: c3f341c6e5b047e4e8e77a7f098cbbcf, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 300
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 224000011143561908, guid: c3f341c6e5b047e4e8e77a7f098cbbcf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2152,11 +2152,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224000011143561908, guid: c3f341c6e5b047e4e8e77a7f098cbbcf, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 224000011143561908, guid: c3f341c6e5b047e4e8e77a7f098cbbcf, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 300
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 224000011143561908, guid: c3f341c6e5b047e4e8e77a7f098cbbcf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2767,10 +2767,10 @@ RectTransform:
   m_Father: {fileID: 1596872944}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -3.6262, y: -28.26001}
-  m_SizeDelta: {x: 182.8118, y: 56.5291}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 113.8602, y: 181}
+  m_SizeDelta: {x: 227.71222, y: 56.529114}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &237715344
 MonoBehaviour:
@@ -2823,6 +2823,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Keys, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4616,6 +4628,8 @@ MonoBehaviour:
   movementController: {fileID: 0}
   ingame: 0
   triggerTablet: {fileID: 237715342}
+  joyStickL: {fileID: 1746520953}
+  joyStickR: {fileID: 1205375148}
   console_txt: {fileID: 1369938179}
 --- !u!1 &335899105
 GameObject:
@@ -13693,6 +13707,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1202730739}
   m_CullTransparentMesh: 1
+--- !u!1 &1205375148 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1000010022102532, guid: c3f341c6e5b047e4e8e77a7f098cbbcf, type: 3}
+  m_PrefabInstance: {fileID: 11152459}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1212417810
 GameObject:
   m_ObjectHideFlags: 0
@@ -16720,7 +16739,7 @@ GameObject:
   - component: {fileID: 1451369199}
   - component: {fileID: 1451369200}
   m_Layer: 3
-  m_Name: Camera
+  m_Name: MenuCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19971,6 +19990,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744958558}
   m_CullTransparentMesh: 1
+--- !u!1 &1746520953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1000010022102532, guid: c3f341c6e5b047e4e8e77a7f098cbbcf, type: 3}
+  m_PrefabInstance: {fileID: 160540455}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1758956879
 GameObject:
   m_ObjectHideFlags: 0
