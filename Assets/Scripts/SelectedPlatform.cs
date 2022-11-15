@@ -46,7 +46,9 @@ public class SelectedPlatform : MonoBehaviour
             Debug.Log("Overrided Device Type: " + device_type);
             sendlog.SendLog("Overrided Device Type: " + device_type, false);
         }
-    }
+
+		FindObjectOfType<Keys>().device_type = this.device_type;
+	}
 
     // Update is called once per frame
     //void Update()

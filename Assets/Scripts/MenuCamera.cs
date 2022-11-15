@@ -25,7 +25,6 @@ public class MenuCamera : MonoBehaviour
 	public void OnEnable()
 	{
 		ReSOUND();
-		Debug.Log("test");
 	}
 
 

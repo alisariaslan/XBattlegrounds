@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Fire
+  - mobile_control_tag
+  - ingame_other_tag
   layers:
   - Default
   - TransparentFX
