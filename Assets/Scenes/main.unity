@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6743359, g: 0.7778439, b: 0.78888357, a: 1}
+  m_IndirectSpecularColor: {r: 0.48208886, g: 0.62783736, b: 0.7223883, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -28536,7 +28536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   device_type: 
   sendlog: {fileID: 975263345}
-  isMobile: 0
+  isMobile: 1
 --- !u!4 &1674444443
 Transform:
   m_ObjectHideFlags: 0
