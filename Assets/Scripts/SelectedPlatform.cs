@@ -23,7 +23,7 @@ public class SelectedPlatform : MonoBehaviour
         else if (SystemInfo.deviceType == DeviceType.Desktop)
         {
             device_type = "Desktop";
-			FindObjectOfType<graphic_settings>().UpdateUIForPC();
+			
 			
 		}
 
@@ -31,7 +31,6 @@ public class SelectedPlatform : MonoBehaviour
         else if (SystemInfo.deviceType == DeviceType.Handheld)
         {
             device_type = "Handheld";
-			FindObjectOfType<graphic_settings>().UpdateUIForMobile();
 		}
 
         //Check if the device running this is unknown
@@ -53,7 +52,8 @@ public class SelectedPlatform : MonoBehaviour
 		FindObjectOfType<Keys>().SetUi(device_type);
 		FindObjectOfType<graphic_settings>().device_type = this.device_type;
 		FindObjectOfType<graphic_settings>().UpdateGraphics();
-		
+		FindObjectOfType<graphic_settings>().UpdateUI();
+
 	}
 	
 }

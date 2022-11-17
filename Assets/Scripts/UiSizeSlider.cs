@@ -18,7 +18,7 @@ public class UiSizeSlider : MonoBehaviour
     public void UpdateUiSize()
     {
 		PlayerPrefs.SetInt("UiSize",(int) uiSizeSlider.value);
-		FindObjectOfType<graphic_settings>().UpdateUIForMobile();
+		FindObjectOfType<graphic_settings>().UpdateUI();
 	}
 	
 }

@@ -9,6 +9,12 @@ public class selected_graphic_tier : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		UpdateTextTier();
+	}
+
+	// Update is called once per frame
+	public void UpdateTextTier()
+	{
 		int tier = PlayerPrefs.GetInt("VideoTier", 0);
 		string level;
 		switch (tier)
@@ -30,12 +36,6 @@ public class selected_graphic_tier : MonoBehaviour
 				break;
 
 		}
-		text.text = level;
+		text.text = "Selected " + level;
 	}
-
-    // Update is called once per frame
-    //void Update()
-    //{
-        
-    //}
 }

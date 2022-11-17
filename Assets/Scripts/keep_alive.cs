@@ -27,10 +27,17 @@ public class keep_alive : MonoBehaviour
     {
         if(ingame)
         {
-
             players = GameObject.FindGameObjectsWithTag("Player");
             player_counter_text.text = players.Length.ToString();
-        }
+			
+			foreach (GameObject player in players)
+			{
+				if (player.GetComponent<MovementController>().isLocal)
+				{
+					player.GetComponent<MovementController>().StartRemote();
+				}
+			}
+		}
 
     }
 
@@ -49,19 +56,18 @@ public class keep_alive : MonoBehaviour
         }
     }
 
-    public void gameHosted()
+    public void gameConnected()
     {
-
-        players = GameObject.FindGameObjectsWithTag("Player");
-        ingame = true;
-        player_counter_text.text = players.Length.ToString();
+		ingame = true;
         ingame_panel.SetActive(true);
         ui_panel.SetActive(false);
         ui_cam.SetActive(false);
-        if (selectedPlatform.device_type.Equals("Handheld"))
-        {
-            joysticks.SetActive(true);
-        }
-        
-    }
+		if (selectedPlatform.device_type.Equals("Handheld"))
+		{
+			joysticks.SetActive(true);
+		}
+		
+			
+
+	}
 }

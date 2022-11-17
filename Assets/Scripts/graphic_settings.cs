@@ -12,6 +12,7 @@ public class graphic_settings : MonoBehaviour
 	public Material superSimpleWaterShader;  
 	private DepthOfField water_dof;
 	public GameObject post_proces_obj;
+	public GameObject fps_counter;
 
 	//// Start is called before the first frame update
 	//void Start()
@@ -76,23 +77,33 @@ public class graphic_settings : MonoBehaviour
 		UpdateGraphics();
 	}
 
-	public void UpdateUIForPC()
+	public void UpdateUI()
 	{
+		int fpsC = PlayerPrefs.GetInt("FpsCounter", 0);
+		if (fpsC == 1)
+		{
+			fps_counter.SetActive(true);
+		}
+		else
+		{
+			fps_counter.SetActive(false);
+		}
+		
+		if (device_type.Equals("Desktop"))
+		{
+			
+		} else
+		{
+			float my_size = PlayerPrefs.GetInt("UiSize", 0);
+			float my_offset = PlayerPrefs.GetInt("UiOffset", 0);
+			my_size++;
+			my_offset++;
 
+			joyStickL.sizeDelta = (new Vector2(200 * my_size, 200 * my_size));
+			joyStickL.anchoredPosition = (new Vector2(100 * (my_offset), 100 * (my_offset)));
+			joyStickR.sizeDelta = (new Vector2(200 * my_size, 200 * my_size));
+			joyStickR.anchoredPosition = (new Vector2(-100 * (my_offset), 100 * (my_offset)));
+		}
 	}
-
-	public void UpdateUIForMobile()
-	{
-		float my_size = PlayerPrefs.GetInt("UiSize", 0);
-		float my_offset = PlayerPrefs.GetInt("UiOffset", 0);
-		my_size++;
-		my_offset++;
-
-		joyStickL.sizeDelta = (new Vector2(200 * my_size, 200 * my_size));
-		joyStickL.anchoredPosition = (new Vector2(100 * (my_offset), 100 * (my_offset)));
-		joyStickR.sizeDelta = (new Vector2(200 * my_size, 200 * my_size));
-		joyStickR.anchoredPosition = (new Vector2(-100 * (my_offset), 100 * (my_offset)));
-
-
-	}
+	
 }

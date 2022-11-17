@@ -18,6 +18,6 @@ public class UiOffsetSlider : MonoBehaviour
     public void UpdateUiOffset()
     {
         PlayerPrefs.SetInt("UiOffset",(int) uiOffsetSlider.value);
-        FindObjectOfType<graphic_settings>().UpdateUIForMobile();
+        FindObjectOfType<graphic_settings>().UpdateUI();
     }
 }

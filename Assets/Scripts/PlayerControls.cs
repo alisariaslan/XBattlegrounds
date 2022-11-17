@@ -25,7 +25,8 @@ public class PlayerControls : MonoBehaviour
 
     private SimpleTouchController rightController;
 
-    void Start()
+
+	void Start()
     {
         //if (!isLocalPlayer)
         //{

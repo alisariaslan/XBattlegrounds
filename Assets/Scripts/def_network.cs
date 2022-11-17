@@ -45,7 +45,7 @@ public class def_network : NetworkManager
             Debug.Log("Host started. -> " + host);
             sender.SendLog("Host started. -> " + host, false);
             status_txt.text = "YOU ARE THE HOST";
-            keepAlive.gameHosted();
+            keepAlive.gameConnected();
         }
         else
         {
@@ -145,7 +145,8 @@ public class def_network : NetworkManager
         conn_btn_txt.text = "Connect";
         conn_btn.interactable = true;
         status_txt.text = "";
-    }
+		keepAlive.gameConnected();
+	}
 
     public void stop_client()
     {
