@@ -22,7 +22,7 @@ public class Keys : MonoBehaviour
 	public GameObject triggerTablet;
 	public GameObject joyStickL, joyStickR;
 
-	public string device_type;
+	private string device_type;
 
 	void Update()
 	{
@@ -126,5 +126,36 @@ public class Keys : MonoBehaviour
 		}
 	}
 
+	public void SetUi(string device_type)
+	{
+		this.device_type = device_type;
+		if (device_type.Equals("Desktop"))
+		{
+			SetActivePCItems();
+		}
+		else if (device_type.Equals("Handheld"))
+		{
+			SetActiveMobileItems();
+			
+		}
+	}
 
+	public GameObject[] pc_obj;
+	public GameObject[] tel_obj;
+
+	public void SetActivePCItems()
+	{
+		foreach (GameObject item in pc_obj)
+		{
+			item.SetActive(true);
+		}
+	}
+
+	public void SetActiveMobileItems()
+	{
+		foreach (GameObject item in tel_obj)
+		{
+			item.SetActive(true);
+		}
+	}
 }

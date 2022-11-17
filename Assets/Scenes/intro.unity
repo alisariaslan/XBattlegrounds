@@ -993,6 +993,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1720834168}
   - component: {fileID: 1720834167}
+  - component: {fileID: 1720834169}
   m_Layer: 0
   m_Name: SoundEffect
   m_TagString: Untagged
@@ -1110,6 +1111,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1720834169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720834166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50fdf77b85b3aa6418ce7a500b120001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1934433805
 GameObject:
   m_ObjectHideFlags: 0

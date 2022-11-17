@@ -23,13 +23,16 @@ public class SelectedPlatform : MonoBehaviour
         else if (SystemInfo.deviceType == DeviceType.Desktop)
         {
             device_type = "Desktop";
-        }
+			FindObjectOfType<graphic_settings>().UpdateUIForPC();
+			
+		}
 
         //Check if the device running this is a handheld
         else if (SystemInfo.deviceType == DeviceType.Handheld)
         {
             device_type = "Handheld";
-        }
+			FindObjectOfType<graphic_settings>().UpdateUIForMobile();
+		}
 
         //Check if the device running this is unknown
         else if (SystemInfo.deviceType == DeviceType.Unknown)
@@ -46,13 +49,11 @@ public class SelectedPlatform : MonoBehaviour
             Debug.Log("Overrided Device Type: " + device_type);
             sendlog.SendLog("Overrided Device Type: " + device_type, false);
         }
-
-		FindObjectOfType<Keys>().device_type = this.device_type;
+		
+		FindObjectOfType<Keys>().SetUi(device_type);
+		FindObjectOfType<graphic_settings>().device_type = this.device_type;
+		FindObjectOfType<graphic_settings>().UpdateGraphics();
+		
 	}
-
-    // Update is called once per frame
-    //void Update()
-    //{
-        
-    //}
+	
 }

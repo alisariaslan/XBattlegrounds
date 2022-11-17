@@ -5,13 +5,6 @@ using UnityEngine.UI;
 
 public class MenuCamera : MonoBehaviour
 {
-  
- 
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //    ReSOUND();
-    //}
 
     public void ReSOUND()
     {

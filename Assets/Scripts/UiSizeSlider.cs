@@ -7,8 +7,6 @@ public class UiSizeSlider : MonoBehaviour
 {
     public Slider uiSizeSlider;
 
-	public RectTransform joyStickL, joyStickR;
-
 	// Start is called before the first frame update
 	void Start()
     {	
@@ -20,21 +18,7 @@ public class UiSizeSlider : MonoBehaviour
     public void UpdateUiSize()
     {
 		PlayerPrefs.SetInt("UiSize",(int) uiSizeSlider.value);
-		UpdateAllUISize();
+		FindObjectOfType<graphic_settings>().UpdateUIForMobile();
 	}
-
-	public void UpdateAllUISize()
-	{
-		float my_size = PlayerPrefs.GetInt("UiSize", 0);
-		float my_offset = PlayerPrefs.GetInt("UiOffset", 0);
-		my_size++;
-		my_offset++;
-		
-			joyStickL.sizeDelta = (new Vector2(200 * my_size, 200 * my_size));
-			joyStickL.anchoredPosition = (new Vector2(100 * (my_offset), 100 * (my_offset)));
-			joyStickR.sizeDelta = (new Vector2(200 * my_size, 200 * my_size));
-			joyStickR.anchoredPosition = (new Vector2(-100 * (my_offset), 100 * (my_offset)));
-
-		
-	}
+	
 }
