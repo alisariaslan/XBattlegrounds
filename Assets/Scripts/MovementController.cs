@@ -37,40 +37,44 @@ public class MovementController : NetworkBehaviour
 	// Start is called before the first frame update
 	public void StartRemote()
 	{
-		if(!alreadystarted)
+
+		camera.SetActive(true);
+
+
+		Keys keys = FindObjectOfType<Keys>();
+		keys.movementController = this;
+		keys.player = GetComponentInChildren<PlayerControls>();
+
+		device_type = FindObjectOfType<SelectedPlatform>().device_type;
+		if (device_type.Equals("Handheld"))
 		{
-			alreadystarted = true;
-			Keys keys = FindObjectOfType<Keys>();
-			keys.movementController = this;
-			keys.player = GetComponentInChildren<PlayerControls>();
-
-			device_type = FindObjectOfType<SelectedPlatform>().device_type;
-			if (device_type.Equals("Handheld"))
-			{
-				SwitchMovemementToLeftHand();
-			}
-
-			camera.SetActive(true);
-			paused = false;
-			
+			SwitchMovemementToLeftHand();
 		}
+
 		
+		
+		paused = false;
+
+		
+
 	}
-
-	private bool alreadystarted = false;
-
-	public void SwitchMovemementToRightHand()
-	{
-		leftJoystick = GameObject.Find("jStick_right");
-		leftController = leftJoystick.GetComponent<SimpleTouchController>();
-	}
-
 
 	public void SwitchMovemementToLeftHand()
 	{
 		leftJoystick = GameObject.Find("jStick_left");
-		leftController = leftJoystick.GetComponent<SimpleTouchController>();
+		
+			leftController = leftJoystick.GetComponent<SimpleTouchController>();
 	}
+	
+	public void SwitchMovemementToRightHand()
+	{
+		leftJoystick = GameObject.Find("jStick_right");
+	
+			leftController = leftJoystick.GetComponent<SimpleTouchController>();
+	}
+
+
+	
 
 	// Update is called once per frame
 	void Update()

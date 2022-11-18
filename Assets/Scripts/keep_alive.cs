@@ -15,7 +15,7 @@ public class keep_alive : MonoBehaviour
     private def_network def_Network;
     public SelectedPlatform selectedPlatform;
     public GameObject joysticks;
-
+	public bool alreadyStart = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,21 +30,28 @@ public class keep_alive : MonoBehaviour
             players = GameObject.FindGameObjectsWithTag("Player");
             player_counter_text.text = players.Length.ToString();
 			
-			foreach (GameObject player in players)
+			if(!alreadyStart)
 			{
-				if (player.GetComponent<MovementController>().isLocal)
+				foreach (GameObject player in players)
 				{
-					player.GetComponent<MovementController>().StartRemote();
+					if (player.GetComponent<MovementController>().isLocal)
+					{
+						player.GetComponent<MovementController>().StartRemote();
+						alreadyStart = true;
+						return;
+					}
 				}
 			}
+			
 		}
 
     }
 
     public void enable_ui()
     {
-        ui_cam.SetActive(true);
-        ingame = false;
+		ingame = false;
+		alreadyStart = false;
+		ui_cam.SetActive(true);
         ingame_panel.SetActive(false);
         ui_panel.SetActive(true);
         Cursor.visible = true;
@@ -56,18 +63,24 @@ public class keep_alive : MonoBehaviour
         }
     }
 
-    public void gameConnected()
-    {
-		ingame = true;
-        ingame_panel.SetActive(true);
-        ui_panel.SetActive(false);
-        ui_cam.SetActive(false);
+	public void disable_ui()
+	{
+		ui_cam.SetActive(false);
+		
+		ingame_panel.SetActive(true);
+		ui_panel.SetActive(false);
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Confined;
+		Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 		if (selectedPlatform.device_type.Equals("Handheld"))
 		{
 			joysticks.SetActive(true);
 		}
-		
-			
+		ingame = true;
+	}
 
+	public void gameConnected()
+    {
+		disable_ui();
 	}
 }
