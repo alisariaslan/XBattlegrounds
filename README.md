@@ -1,21 +1,18 @@
 # xbattlegrounds
-Bir yerli PUBG girişimi.
+Local initiative 'The Battleground X' !
 
-Önceliğimiz cross-platform bir oyun olması. Hem mobil hem pc.
-Bu nedenle çok ağır grafikler bulundurmayacağız.
+"Battleground X" is a war - survival game. It can contain various game modes. It does not distinguish between players between platforms. Anyone can fight anywhere, any way. It has a singular camera point of view. Everyone can create their own battlefield!
 
-Çalışma tarzı:
-*Server,
-*Client,
-*Server + Client şeklinde olacak.
+Our priority is to be a multi-platform game.
 
-İsteyen arkadaşları ile co-op şeklinde de oynayabilecek.
-Tek bakış modu olacak. (FPS)
+Connection styles:
+SERVER,
+CLIENT,
+SERVER + CLIENT.
 
-Oyun içi bir görsel:
+Ingame shots:
+
 ![2022-11-05 (2)](https://user-images.githubusercontent.com/36519570/200106779-b1bafb3a-b9c7-4b7b-a1f8-adb00c148d13.png)
 
-UI (arayüz):
 ![image](https://user-images.githubusercontent.com/36519570/200106805-576a37e4-dd89-44ee-ba84-a880e9037f11.png)
 
-Şimdlik arayüzün sadece telefondan çalışmasını düşünüyoruz...
