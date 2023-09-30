@@ -1,11 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class get_servers : MonoBehaviour
@@ -135,10 +131,7 @@ public class get_servers : MonoBehaviour
 		yield return new WaitForSeconds(0.0f);
 	}
 
-	void OnClientError(NetworkMessage netMsg)
-	{
-		Debug.Log("" + netMsg);
-	}
+	
 
 	//void OnConnected(NetworkMessage netMsg)
 	//{

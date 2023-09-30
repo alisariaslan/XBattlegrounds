@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +5,6 @@ public class Keys : MonoBehaviour
 {
 	public GameObject tablet;
 	public GameObject console;
-	public keep_alive keepAlive;
 
 	public TabletAnim tabletAnim;
 	public Button enter;
@@ -26,7 +22,6 @@ public class Keys : MonoBehaviour
 
 	void Update()
 	{
-		ingame = keepAlive.ingame;
 
 
 		if (Input.GetKeyDown(KeyCode.Tab) && ingame)
@@ -35,7 +30,7 @@ public class Keys : MonoBehaviour
 				Console();
 			Tablet();
 		}
-		if (Input.GetKeyDown(KeyCode.BackQuote))
+		if (Input.GetKey(KeyCode.P) && Input.GetKeyDown(KeyCode.P))
 		{
 			if (tablet.activeSelf)
 				Tablet();

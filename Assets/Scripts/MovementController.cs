@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
 #pragma warning disable CS0618 // Type or member is obsolete
-public class MovementController : NetworkBehaviour
+public class MovementController : MonoBehaviour
 #pragma warning restore CS0618 // Type or member is obsolete
 {
 	public HeadBobbing headBobbing;
@@ -19,7 +16,7 @@ public class MovementController : NetworkBehaviour
 	public float crouch_speed = 2f;
 	public new GameObject camera;
 
-	public bool paused = true;
+	public bool paused = false;
 
 	private GameObject leftJoystick;
 	private SimpleTouchController leftController;
@@ -29,13 +26,12 @@ public class MovementController : NetworkBehaviour
 
 	private void Start()
 	{
-		if (!isLocalPlayer)
-			return;
+		
 
 		isLocal = true;
 	}
 	// Start is called before the first frame update
-	public void StartRemote()
+	public void StartFromRemote()
 	{
 
 		camera.SetActive(true);
@@ -79,8 +75,6 @@ public class MovementController : NetworkBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (!isLocalPlayer)
-			return;
 
 		if (!paused)
 		{

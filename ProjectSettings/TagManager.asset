@@ -7,11 +7,12 @@ TagManager:
   - Fire
   - mobile_control_tag
   - ingame_other_tag
+  - PlayerCamera
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - PostProcessTest
+  - PostProcessPlayer
   - Water
   - UI
   - WaterArea

@@ -35,7 +35,6 @@ public class TabletAnim : MonoBehaviour
     public void Leave()
     {
         FindObjectOfType<Keys>().Tablet();
-        FindObjectOfType<SendLogs>().SendLog("leave", true);
     }
 
     //void OnMouseExit()
