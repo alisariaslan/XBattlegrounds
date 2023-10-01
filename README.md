@@ -2,4 +2,6 @@
 
 X Battlegrounds will be shooter and survival game. 
 
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/Vmtt8tNdohY" title="X Battlegrounds - Dev Log - Alfa A3 (Island rework)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+![island](https://github.com/alisariaslan/XBattlegrounds/assets/36519570/03d19525-a9e0-416e-9283-0ac9c5e18bac)
+
+[![island](https://img.youtube.com/vi/Vmtt8tNdohY/0.jpg)](https://www.youtube.com/watch?v=Vmtt8tNdohY)
