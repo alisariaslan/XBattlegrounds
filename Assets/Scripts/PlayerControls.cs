@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class PlayerControls : MonoBehaviour
@@ -33,7 +30,7 @@ public class PlayerControls : MonoBehaviour
         //    defaultCamera.SetActive(false);
         //    return;
         //}
-        device_type = FindObjectOfType<SelectedPlatform>().device_type;
+        device_type = FindObjectOfType<PlatformManager>().device_type;
         
         if (lockCursor)
         {

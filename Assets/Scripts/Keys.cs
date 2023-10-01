@@ -24,19 +24,19 @@ public class Keys : MonoBehaviour
 	{
 
 
-		if (Input.GetKeyDown(KeyCode.Tab) && ingame)
+		if (Input.GetKeyUp(KeyCode.Tab))
 		{
 			if (console.activeSelf)
 				Console();
 			Tablet();
 		}
-		if (Input.GetKey(KeyCode.P) && Input.GetKeyDown(KeyCode.P))
+		if (Input.GetKeyUp(KeyCode.P))
 		{
-			if (tablet.activeSelf)
+			if (tablet.activeSelf && PlayerPrefs.GetString("console","false").Equals("true"))
 				Tablet();
 			Console();
 		}
-		if (Input.GetKeyDown(KeyCode.Return))
+		if (Input.GetKeyUp(KeyCode.Return))
 		{
 			if (console.activeSelf)
 			{

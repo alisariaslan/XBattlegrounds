@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +16,6 @@ public class UiOffsetSlider : MonoBehaviour
     public void UpdateUiOffset()
     {
         PlayerPrefs.SetInt("UiOffset",(int) uiOffsetSlider.value);
-        FindObjectOfType<graphic_settings>().UpdateUI();
+        //FindObjectOfType<GraphicManager>().UpdateUI();
     }
 }

@@ -19,7 +19,7 @@ public class GeneralSettingsSetter : MonoBehaviour
 	{
 		string isActive = gameObject.GetComponent<Toggle>().isOn ? "true" : "false";
 		PlayerPrefs.SetString("FpsCounter", isActive);
-		FindObjectOfType<graphic_settings>().UpdateUI();
+		//FindObjectOfType<GraphicManager>().UpdateUI();
 	}
 
 }

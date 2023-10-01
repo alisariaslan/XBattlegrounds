@@ -17,7 +17,7 @@ public class dropdown_graphics : MonoBehaviour
 	public void UpdateTier()
 	{
 		PlayerPrefs.SetInt("VideoTier", dropdown.value);
-		FindObjectOfType<graphic_settings>().UpdateGraphics();
+		//FindObjectOfType<GraphicManager>().UpdateGraphics();
 	}
 
 }

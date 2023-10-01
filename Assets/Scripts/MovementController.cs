@@ -14,7 +14,7 @@ public class MovementController : MonoBehaviour
 	private bool groundedPlayer;
 	public float x, y;
 	public float crouch_speed = 2f;
-	public new GameObject camera;
+	public GameObject myCamera;
 
 	public bool paused = false;
 
@@ -26,22 +26,20 @@ public class MovementController : MonoBehaviour
 
 	private void Start()
 	{
-		
-
 		isLocal = true;
+        myCamera = transform.GetChild(0).gameObject;
 	}
 	// Start is called before the first frame update
 	public void StartFromRemote()
 	{
 
-		camera.SetActive(true);
 
 
 		Keys keys = FindObjectOfType<Keys>();
 		keys.movementController = this;
 		keys.player = GetComponentInChildren<PlayerControls>();
 
-		device_type = FindObjectOfType<SelectedPlatform>().device_type;
+		device_type = FindObjectOfType<PlatformManager>().device_type;
 		if (device_type.Equals("Handheld"))
 		{
 			SwitchMovemementToLeftHand();
@@ -111,8 +109,8 @@ public class MovementController : MonoBehaviour
 			}
 
 			//camera forward and right vectors:
-			Vector3 forward = camera.transform.forward;
-			Vector3 right = camera.transform.right;
+			Vector3 forward = myCamera.transform.forward;
+			Vector3 right = myCamera.transform.right;
 
 			//project forward and right vectors on the horizontal plane (y = 0)
 			forward.y = 0f;
