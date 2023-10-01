@@ -1,18 +1,5 @@
-# xbattlegrounds
-Local initiative 'The Battleground X' !
+# X Battlegrounds 
 
-"Battleground X" is a war - survival game. It can contain various game modes. It does not distinguish between players between platforms. Anyone can fight anywhere, any way. It has a singular camera point of view. Everyone can create their own battlefield!
+X Battlegrounds will be shooter and survival game. 
 
-Our priority is to be a multi-platform game.
-
-Connection styles:
-SERVER,
-CLIENT,
-SERVER + CLIENT.
-
-Ingame shots:
-
-![2022-11-05 (2)](https://user-images.githubusercontent.com/36519570/200106779-b1bafb3a-b9c7-4b7b-a1f8-adb00c148d13.png)
-
-![image](https://user-images.githubusercontent.com/36519570/200106805-576a37e4-dd89-44ee-ba84-a880e9037f11.png)
-
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/Vmtt8tNdohY" title="X Battlegrounds - Dev Log - Alfa A3 (Island rework)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
